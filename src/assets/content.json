@@ -1,0 +1,25 @@
+{
+  "header": {
+    "attempts": "Attempts:",
+    "time": "Time:",
+    "seconds": "sec"
+  },
+  "difficultySelector": {
+    "label": "Select difficulty level:",
+    "options": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "game": {
+
+  },
+  "images": [],
+  "card": {
+    "imageAlt": "card"
+  },
+  "footer": {
+
+  }
+}
