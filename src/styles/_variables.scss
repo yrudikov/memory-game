@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #af4261;
+  --secondary-color: #f3ec78;
+  --background-color: #f8f8f8;
+}
+
+$font-family: 'Arial, sans-serif';
+$base-font-size: 16px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-high-desktop: 1600px;
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin high-desktop {
+  @media (min-width: $breakpoint-high-desktop) {
+    @content;
+  }
+}
