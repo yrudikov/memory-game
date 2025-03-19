@@ -1,3 +1,25 @@
-.test {
-  color: red;
+
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px $primary-color solid;
+  background-color: $secondary-background-color;
+  border-radius: 6px;
+}
+
+.cardFront {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  //background-color: $background-color;
+}
+
+.flipped {
+ background-color: $background-color;
+}
+
+.matched {
+ border: $primary-color 3px solid;
 }

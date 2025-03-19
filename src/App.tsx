@@ -1,20 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import './App.css'
-import Card from "./components/Card/Card.tsx";
-import {FcAdvertising} from 'react-icons/fc';
+import React from 'react';
+import Game from './Game';
+import styles from './styles/App.module.scss';
 
-function App() {
-  // const [count, setCount] = useState(0)
-    const icon = FcAdvertising;
+const App: React.FC = () => {
+    return (
+        <div className={styles.app}>
+            <Game />
+        </div>
+    );
+};
 
-  return (
-    <>
-
-        <Card id={1} icon={icon} />
-    </>
-  )
-}
-
-export default App
+export default App;

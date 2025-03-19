@@ -1,0 +1,9 @@
+.gameHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $secondary-background-color;
+  color: $secondary-color;
+  padding: 20px;
+  border-radius: 0 0 6px 6px;
+}

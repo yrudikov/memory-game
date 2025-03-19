@@ -1,29 +1,26 @@
+
 :root {
-  --primary-color: #af4261;
-  --secondary-color: #f3ec78;
-  --background-color: #f8f8f8;
+  --primary-color: #2a0a52;
+  --secondary-color: #e6e6fa;
+  --background-color: #e6e6fa;
+  --secondary-background-color: #2a0a52;
 }
+
+
+//--primary-color: #013366;
+//--secondary-color: #f1e5cf;
+//--background-color: #f1e5cf;
+//--secondary-background-color: #013366;
 
 $font-family: 'Arial, sans-serif';
 $base-font-size: 16px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
-$breakpoint-high-desktop: 1600px;
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$background-color: var(--background-color);
+$secondary-background-color: var(--secondary-background-color);
+//$breakpoint-high-desktop: 1600px;
 
-@mixin tablet {
-  @media (min-width: $breakpoint-tablet) {
-    @content;
-  }
-}
 
-@mixin desktop {
-  @media (min-width: $breakpoint-desktop) {
-    @content;
-  }
-}
 
-@mixin high-desktop {
-  @media (min-width: $breakpoint-high-desktop) {
-    @content;
-  }
-}

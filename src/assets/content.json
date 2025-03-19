@@ -2,6 +2,7 @@
   "test": "is work!",
   "header": {
     "attempts": "Attempts:",
+    "points": "Points:",
     "time": "Time:",
     "seconds": "sec"
   },
@@ -10,7 +11,8 @@
     "options": {
       "easy": "Easy",
       "medium": "Medium",
-      "hard": "Hard"
+      "hard": "Hard",
+      "banana": "BananA"
     }
   },
   "game": {

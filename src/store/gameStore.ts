@@ -1,19 +1,120 @@
+
 import { create } from 'zustand';
 import { IconType } from 'react-icons';
+
 
 export interface Card {
     id: number;
     icon: IconType;
+    isFlipped: boolean;
+    isMatched: boolean;
 }
+
+
+export type Difficulty = 'easy' | 'medium' | 'hard' | 'banana';
+export type Name = string | null;
+
 
 export interface GameState {
     cards: Card[];
+    attempts: number;
+    time: number;
+    points: number;
+    revealedCards: number[];
+    difficulty: Difficulty;
+    name: Name;
+
 
     setCards: (cards: Card[]) => void;
+    flipCard: (id: number) => void;
+    incrementAttempts: () => void;
+    incrementPoints: () => void;
+    setDifficulty: (difficulty: Difficulty) => void;
+    resetGame: () => void;
+    tick: () => void;
+    setRevealedCards: (cards: number[]) => void;
+    setName: (name: string) => void;
 }
+
 
 export const useGameStore = create<GameState>((set, get) => ({
     cards: [],
+    attempts: 0,
+    time: 0,
+    points: 0,
+    revealedCards: [],
+    difficulty: 'easy',
+    name: null,
 
-    setCards: (cards: Card[]) => set({cards}),
-}))
+    setName: (name: Name) => set({name}),
+
+
+    setCards: (cards: Card[]) => set({ cards }),
+
+
+    flipCard: (id: number) => {
+        const { cards, revealedCards, incrementAttempts, incrementPoints } = get();
+
+
+        if (revealedCards.length === 2) return;
+
+
+        const cardIndex = cards.findIndex(card => card.id === id);
+
+        if (cards[cardIndex].isFlipped || cards[cardIndex].isMatched) return;
+
+
+        const updatedCards = cards.map(card =>
+            card.id === id ? { ...card, isFlipped: true } : card
+        );
+        const newRevealedCards = [...revealedCards, id];
+        set({ cards: updatedCards, revealedCards: newRevealedCards });
+
+
+        if (newRevealedCards.length === 2) {
+            incrementAttempts();
+            setTimeout(() => {
+                const [firstId, secondId] = newRevealedCards;
+                const firstCard = updatedCards.find(card => card.id === firstId);
+                const secondCard = updatedCards.find(card => card.id === secondId);
+                if (firstCard && secondCard) {
+                    if (firstCard.icon === secondCard.icon) {
+                        incrementPoints();
+
+                        const matchedCards = updatedCards.map(card =>
+                            card.id === firstId || card.id === secondId
+                                ? { ...card, isMatched: true }
+                                : card
+                        );
+                        set({ cards: matchedCards, revealedCards: [] });
+                    } else {
+
+                        const resetCards = updatedCards.map(card =>
+                            card.id === firstId || card.id === secondId
+                                ? { ...card, isFlipped: false }
+                                : card
+                        );
+                        set({ cards: resetCards, revealedCards: [] });
+                    }
+                }
+            }, 1000);
+        }
+    },
+
+
+    incrementAttempts: () => set(state => ({ attempts: state.attempts + 1 })),
+
+    incrementPoints: () => set(state => ({ points: state.points + Math.round(1000 / state.attempts) })),
+
+
+    setDifficulty: (difficulty: Difficulty) => set({ difficulty }),
+
+
+    resetGame: () => set({ attempts: 0, time: 0, revealedCards: [] }),
+
+
+    tick: () => set(state => ({ time: state.time + 1 })),
+
+
+    setRevealedCards: (cards: number[]) => set({ revealedCards: cards }),
+}));
