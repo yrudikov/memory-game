@@ -1,5 +1,4 @@
-// src/components/Board.tsx
-import React, {useEffect, useRef, memo} from 'react';
+import React, {useEffect, useRef, memo, useMemo} from 'react';
 import styles from './Board.module.scss';
 import Card from '@/components/Card/Card';
 import {useGameStore, Card as CardType} from '@/store/gameStore';
@@ -38,7 +37,8 @@ const Board: React.FC<BoardProps> = memo( ({ optimalColumns, isMobile }) => {
         }
     }, [tick, isGameOver]);
 
-    const iconSize = getIconSize(difficulty, isMobile);
+    const iconSize = useMemo(() =>
+        getIconSize(difficulty, isMobile), [difficulty, isMobile]);
 
     console.log('Board render');
 

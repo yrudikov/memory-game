@@ -9,9 +9,9 @@ const ResetButton: React.FC = () => {
     const resetAndRestart = useGameStore(state => state.resetAndRestart)
 
     return <>
-    <button className={styles.resetButton} onClick={resetAndRestart}>
-        {content.resetButton}
-    </button>
+            <button className={styles.resetButton} onClick={resetAndRestart}>
+                {content.resetButton}
+            </button>
     </>
 }
 

@@ -6,18 +6,23 @@ import styles from '@/styles/Game.module.scss';
 import {getOptimalColumns} from "@/utils/generateCards.ts";
 import {useIsMobile} from "@/hooks/useIsMobile.ts";
 import GameOverModal from "@/components/utilsGameComponents/GameOverModal.tsx";
+import {useShallow} from "zustand/shallow";
 
 
 const Game: React.FC = memo( () => {
-    const difficulty = useGameStore(state => state.difficulty);
-    const cards = useGameStore(state => state.cards);
-    const resetAndRestart = useGameStore(state => state.resetAndRestart)
-    const isGameOver = useGameStore(state => state.isGameOver);
+    const { difficulty, cards, resetAndRestart, isGameOver } = useGameStore(
+        useShallow(state => ({
+            difficulty: state.difficulty,
+            cards: state.cards,
+            resetAndRestart: state.resetAndRestart,
+            isGameOver: state.isGameOver,
+        }))
+    );
 
 
     useEffect(() => {
         resetAndRestart();
-    }, [difficulty]);
+    }, [difficulty, resetAndRestart]);
 
 
     const isMobile = useIsMobile();

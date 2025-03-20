@@ -1,9 +1,7 @@
-// src/components/Card.tsx
 import React, {useCallback, memo} from 'react';
 import styles from './Card.module.scss';
 import { useGameStore } from '@/store/gameStore';
 import { FaQuestion } from "react-icons/fa6";
-// import content from '@/assets/content.json';
 
 interface CardProps {
     id: number;

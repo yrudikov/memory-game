@@ -1,8 +1,8 @@
-// src/components/utilsGameComponents.tsx
 import React from 'react';
 import styles from './utilsGameComponents.module.scss';
 import {useGameStore, Difficulty} from '@/store/gameStore';
 import content from '@/assets/content.json';
+import {useShallow} from "zustand/shallow";
 
 interface DifficultySelectorOptions {
     id: number;
@@ -11,8 +11,10 @@ interface DifficultySelectorOptions {
 }
 
 const DifficultySelector: React.FC = () => {
-    const difficulty = useGameStore(state => state.difficulty);
-    const setDifficulty = useGameStore(state => state.setDifficulty);
+    const { difficulty, setDifficulty } = useGameStore(useShallow((state) => ({
+        difficulty: state.difficulty,
+        setDifficulty: state.setDifficulty
+    })));
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setDifficulty(e.target.value as Difficulty);

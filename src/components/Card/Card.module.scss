@@ -31,9 +31,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $secondary-background-color;
   border-radius: inherit;
   color: $secondary-color;
+  background: linear-gradient(45deg, $primary-color 20%, $purple-accent 100%);
+  background-size: 200% 200%;
+  transition: background-position 1s ease-in-out;
+  background-position: left center;
+}
+
+.cardBack:hover {
+  background-position: right center;
 }
 
 .cardFront {
