@@ -16,13 +16,15 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.gameHeader}>
-            <div className={styles.attempts}>
-                {content.header.attempts} {attempts}
+            <div className={styles.statsWrapper}>
+                <div className={styles.attempts}>
+                    {content.header.attempts} {attempts}
+                </div>
+                <div className={styles.points}>
+                    {content.header.points} {points}
+                </div>
+                <Timer/>
             </div>
-            <div className={styles.points}>
-                {content.header.points} {points}
-            </div>
-            <Timer />
             <ResetButton />
             <DifficultySelector />
         </header>

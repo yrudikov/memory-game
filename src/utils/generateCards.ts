@@ -70,3 +70,9 @@ export const getIconSize = (difficulty: Difficulty, isMobile: boolean): number =
             return isMobile ? 40 : 60;
     }
 };
+
+export const formatDate = (dateString: string | undefined) => {
+    if (!dateString) return "Not a valid date";
+    const date = new Date(dateString);
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+};

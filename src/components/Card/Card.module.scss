@@ -7,7 +7,7 @@
   align-items: center;
   border: 1px $primary-color solid;
   background-color: $secondary-background-color;
-  border-radius: 6px;
+  border-radius: $primary-border-radius;
 }
 
 .cardFront {
@@ -30,5 +30,5 @@
 }
 
 .matched {
- border: #ff9800 3px solid;
+ border: $accent-color 3px solid;
 }

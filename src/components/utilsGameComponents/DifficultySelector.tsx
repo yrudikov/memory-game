@@ -1,10 +1,17 @@
 // src/components/utilsGameComponents.tsx
 import React from 'react';
 import styles from './utilsGameComponents.module.scss';
-import { useGameStore, Difficulty } from '@/store/gameStore';
+import {useGameStore, Difficulty} from '@/store/gameStore';
 import content from '@/assets/content.json';
 
+interface DifficultySelectorOptions {
+    id: number;
+    value: string;
+    name: string;
+}
+
 const DifficultySelector: React.FC = () => {
+    const difficulty = useGameStore(state => state.difficulty);
     const setDifficulty = useGameStore(state => state.setDifficulty);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -16,11 +23,10 @@ const DifficultySelector: React.FC = () => {
             <label htmlFor="difficulty">
                 {content.difficultySelector.label}
             </label>
-            <select id="difficulty" onChange={handleChange}>
-                <option value="easy">{content.difficultySelector.options.easy}</option>
-                <option value="medium">{content.difficultySelector.options.medium}</option>
-                <option value="hard">{content.difficultySelector.options.hard}</option>
-                <option value="banana">{content.difficultySelector.options.banana}</option>
+            <select id="difficulty" className={styles.selectLevel} onChange={handleChange} value={difficulty}>
+                {content.difficultySelector.options.map((option: DifficultySelectorOptions) => (
+                    <option key={option.id} value={option.value}>{option.name}</option>
+                ))}
             </select>
         </div>
     );

@@ -1,9 +1,30 @@
 .gameHeader {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: $secondary-background-color;
   color: $secondary-color;
-  padding: 20px;
+  padding: 20px 10px 10px;
   border-radius: 0 0 6px 6px;
+}
+
+.statsWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@include tablet {
+  .gameHeader {
+    flex-direction: row;
+  }
+
+  .statsWrapper {
+    max-width: 50%;
+  }
+}
+
+@include desktop {
+
 }

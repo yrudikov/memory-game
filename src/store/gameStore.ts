@@ -15,10 +15,10 @@ export type Difficulty = 'easy' | 'medium' | 'hard' | 'banana';
 
 export interface GameResult {
     attempts: number;
+    points: number;
     time: number;
     difficulty: Difficulty;
     date: string;
-    name: string | null;
 }
 
 
@@ -134,13 +134,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     setRevealedCards: (cards: number[]) => set({ revealedCards: cards }),
 
     saveResult: () => {
-        const { attempts, time, difficulty, name } = get();
+        const { attempts, time, difficulty, points } = get();
         const result: GameResult = {
             attempts,
+            points,
             time,
             difficulty,
             date: new Date().toISOString(),
-            name
         };
         const historyString = localStorage.getItem('gameHistory');
         const history = historyString ? JSON.parse(historyString) : [];

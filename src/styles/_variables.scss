@@ -4,24 +4,25 @@
   --secondary-color: #e6e6fa;
   --background-color: #e6e6fa;
   --secondary-background-color: #2a0a52;
-  --matched-color: #ff9800;
+  --accent-color: #af4261;
+  --accent-color-hover: #a03b5b;
+  --modal-background: #fff;
+
 }
 
 
-//--primary-color: #013366;
-//--secondary-color: #f1e5cf;
-//--background-color: #f1e5cf;
-//--secondary-background-color: #013366;
-
 $font-family: 'Roboto, sans-serif';
-$base-font-size: 16px;
+$base-font-size: 1rem;
+$title-font-size: 2rem;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
+$primary-border-radius: 6px;
 $primary-color: var(--primary-color);
 $secondary-color: var(--secondary-color);
 $background-color: var(--background-color);
 $secondary-background-color: var(--secondary-background-color);
-$matched-color: var(--matched-color);
+$accent-color: var(--accent-color);
+$accent-color-hover: var(--accent-color-hover);
 
 
 
