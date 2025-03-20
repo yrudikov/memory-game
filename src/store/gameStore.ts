@@ -12,7 +12,14 @@ export interface Card {
 
 
 export type Difficulty = 'easy' | 'medium' | 'hard' | 'banana';
-export type Name = string | null;
+
+export interface GameResult {
+    attempts: number;
+    time: number;
+    difficulty: Difficulty;
+    date: string;
+    name: string | null;
+}
 
 
 export interface GameState {
@@ -22,7 +29,8 @@ export interface GameState {
     points: number;
     revealedCards: number[];
     difficulty: Difficulty;
-    name: Name;
+    name: string | null;
+    isGameOver: boolean;
 
 
     setCards: (cards: Card[]) => void;
@@ -33,7 +41,8 @@ export interface GameState {
     resetGame: () => void;
     tick: () => void;
     setRevealedCards: (cards: number[]) => void;
-    setName: (name: string) => void;
+    setName: (name: string | null) => void;
+    saveResult: () => void;
 }
 
 
@@ -45,15 +54,16 @@ export const useGameStore = create<GameState>((set, get) => ({
     revealedCards: [],
     difficulty: 'easy',
     name: null,
+    isGameOver: false,
 
-    setName: (name: Name) => set({name}),
+    setName: (name) => set({name}),
 
 
     setCards: (cards: Card[]) => set({ cards }),
 
 
     flipCard: (id: number) => {
-        const { cards, revealedCards, incrementAttempts, incrementPoints } = get();
+        const { cards, revealedCards, incrementAttempts, incrementPoints, saveResult } = get();
 
 
         if (revealedCards.length === 2) return;
@@ -87,6 +97,9 @@ export const useGameStore = create<GameState>((set, get) => ({
                                 : card
                         );
                         set({ cards: matchedCards, revealedCards: [] });
+                        if (matchedCards.every(card => card.isMatched)) {
+                            saveResult();
+                        }
                     } else {
 
                         const resetCards = updatedCards.map(card =>
@@ -102,6 +115,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     },
 
 
+
     incrementAttempts: () => set(state => ({ attempts: state.attempts + 1 })),
 
     incrementPoints: () => set(state => ({ points: state.points + Math.round(1000 / state.attempts) })),
@@ -110,11 +124,29 @@ export const useGameStore = create<GameState>((set, get) => ({
     setDifficulty: (difficulty: Difficulty) => set({ difficulty }),
 
 
-    resetGame: () => set({ attempts: 0, time: 0, revealedCards: [] }),
+    resetGame: () => set({ attempts: 0, time: 0, revealedCards: [], points: 0, isGameOver: false }),
 
 
     tick: () => set(state => ({ time: state.time + 1 })),
 
 
     setRevealedCards: (cards: number[]) => set({ revealedCards: cards }),
+
+    saveResult: () => {
+        const { attempts, time, difficulty, name } = get();
+        const result: GameResult = {
+            attempts,
+            time,
+            difficulty,
+            date: new Date().toISOString(),
+            name
+        };
+        const historyString = localStorage.getItem('gameHistory');
+        const history = historyString ? JSON.parse(historyString) : [];
+        history.push(result);
+        localStorage.setItem('gameHistory', JSON.stringify(history));
+
+        set({ isGameOver: true });
+    },
 }));
+

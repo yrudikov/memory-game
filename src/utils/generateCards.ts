@@ -1,5 +1,6 @@
-import { Card } from '@/store/gameStore';
-import { icons } from '@/assets/icons';
+import {Card} from '@/store/gameStore';
+import {icons} from '@/assets/icons';
+import {Difficulty} from "@/store/gameStore";
 
 const shuffleArray = <T>(array: T[]): T[] => {
     const newArray = array.slice();
@@ -10,7 +11,7 @@ const shuffleArray = <T>(array: T[]): T[] => {
     return newArray;
 };
 
- export const generateCards = (difficulty: string): Card[] => {
+export const generateCards = (difficulty: string): Card[] => {
     let numPairs = 0;
     switch (difficulty) {
         case 'easy':
@@ -34,14 +35,14 @@ const shuffleArray = <T>(array: T[]): T[] => {
         return [];
     }
 
-     const shuffledIcons = shuffleArray(icons);
-     const selectedIcons = shuffledIcons.slice(0, numPairs);
+    const shuffledIcons = shuffleArray(icons);
+    const selectedIcons = shuffledIcons.slice(0, numPairs);
 
     let newCards: Card[] = [];
     let id = 0;
     selectedIcons.forEach(icon => {
-        newCards.push({ id: id++, icon, isFlipped: false, isMatched: false });
-        newCards.push({ id: id++, icon, isFlipped: false, isMatched: false });
+        newCards.push({id: id++, icon, isFlipped: false, isMatched: false});
+        newCards.push({id: id++, icon, isFlipped: false, isMatched: false});
     });
 
     return newCards.sort(() => Math.random() - 0.5);
@@ -53,4 +54,19 @@ export const getOptimalColumns = (totalCards: number, isMobile: boolean = false)
         columns = columns - 1;
     }
     return columns;
+};
+
+export const getIconSize = (difficulty: Difficulty, isMobile: boolean): number => {
+    switch (difficulty) {
+        case 'easy':
+            return isMobile ? 60 : 120;
+        case 'medium':
+            return isMobile ? 48 : 98;
+        case 'hard':
+            return isMobile ? 40 : 90;
+        case 'banana':
+            return isMobile ? 30 : 80;
+        default:
+            return isMobile ? 40 : 60;
+    }
 };

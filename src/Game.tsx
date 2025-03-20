@@ -12,6 +12,7 @@ const Game: React.FC = () => {
     const setCards = useGameStore(state => state.setCards);
     const difficulty = useGameStore(state => state.difficulty);
     const cards = useGameStore(state => state.cards);
+    const resetGameStore = useGameStore(state => state.resetGame);
 
     const initializeGame = (): void => {
         const newCards = generateCards(difficulty);
@@ -22,13 +23,18 @@ const Game: React.FC = () => {
         initializeGame();
     }, [difficulty]);
 
+    const resetAndInitialize = (): void => {
+        resetGameStore();
+        initializeGame();
+    };
+
 
     const isMobile = useIsMobile();
     const optimalColumns = getOptimalColumns(cards.length, isMobile);
 
     return (
         <div className={styles.gameContainer}>
-            <Header />
+            <Header onReset={resetAndInitialize} />
             <Board optimalColumns={optimalColumns} isMobile={isMobile} />
         </div>
     );

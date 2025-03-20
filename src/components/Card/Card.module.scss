@@ -13,7 +13,9 @@
 .cardFront {
   width: 100%;
   aspect-ratio: 1 / 1;
-  //background-color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flipped {

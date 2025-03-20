@@ -5,10 +5,15 @@ import { useGameStore } from '@/store/gameStore';
 import content from '@/assets/content.json';
 import DifficultySelector from '@/components/DifficultySelector/DifficultySelector';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    onReset?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onReset }) => {
     const attempts = useGameStore(state => state.attempts);
     const time = useGameStore(state => state.time);
     const points = useGameStore(state => state.points);
+
 
     return (
         <header className={styles.gameHeader}>
@@ -18,6 +23,9 @@ const Header: React.FC = () => {
             <div className={styles.points}>
                 {content.header.points} {points}
             </div>
+            <button onClick={onReset}>
+                reset game
+            </button>
             <div className={styles.time}>
                 {content.header.time} {time} {content.header.seconds}
             </div>

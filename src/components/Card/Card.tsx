@@ -9,9 +9,10 @@ interface CardProps {
     icon: React.ComponentType<{ size?: number }>;
     isFlipped: boolean;
     isMatched: boolean;
+    iconSize: number;
 }
 
-const Card: React.FC<CardProps> = ({ id, icon: Icon, isFlipped, isMatched }) => {
+const Card: React.FC<CardProps> = ({ id, icon: Icon, isFlipped, isMatched, iconSize }) => {
     const flipCard = useGameStore(state => state.flipCard);
 
 
@@ -31,7 +32,7 @@ const Card: React.FC<CardProps> = ({ id, icon: Icon, isFlipped, isMatched }) => 
             <div className={styles.cardInner}>
                 {isFlipped || isMatched ? (
                     <div className={styles.cardFront}>
-                        {Icon && <Icon size={48} />}
+                        {Icon && <Icon size={iconSize} />}
                     </div>
                 ) : (
                     <div className={styles.cardBack}>
