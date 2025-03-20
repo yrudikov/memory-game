@@ -10,7 +10,7 @@ import { formatDate } from "@/utils/generateCards.ts";
 const GameOverModal: React.FC = () => {
     const [lastResult, setLastResult] = useState<GameResult | null>(null);
 
-
+    console.log('GameOverModal render');
     useEffect(() => {
         const historyString = localStorage.getItem('gameHistory');
         if (historyString) {

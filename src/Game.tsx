@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, memo, useMemo} from 'react';
 import {useGameStore} from '@/store/gameStore';
 import Header from '@/components/Header/Header';
 import Board from '@/components/Board/Board';
@@ -8,7 +8,7 @@ import {useIsMobile} from "@/hooks/useIsMobile.ts";
 import GameOverModal from "@/components/utilsGameComponents/GameOverModal.tsx";
 
 
-const Game: React.FC = () => {
+const Game: React.FC = memo( () => {
     const difficulty = useGameStore(state => state.difficulty);
     const cards = useGameStore(state => state.cards);
     const resetAndRestart = useGameStore(state => state.resetAndRestart)
@@ -21,8 +21,12 @@ const Game: React.FC = () => {
 
 
     const isMobile = useIsMobile();
-    const optimalColumns = getOptimalColumns(cards.length, isMobile);
+    const optimalColumns = useMemo(
+        () => getOptimalColumns(cards.length, isMobile),
+        [cards.length, isMobile]
+    );
 
+    console.log('Game render');
     return (
         <div className={styles.gameContainer}>
             <Header/>
@@ -30,6 +34,6 @@ const Game: React.FC = () => {
             {isGameOver && <GameOverModal />}
         </div>
     );
-};
+});
 
 export default Game;

@@ -1,5 +1,5 @@
 // src/components/Card.tsx
-import React from 'react';
+import React, {useCallback, memo} from 'react';
 import styles from './Card.module.scss';
 import { useGameStore } from '@/store/gameStore';
 import { FaQuestion } from "react-icons/fa6";
@@ -13,36 +13,33 @@ interface CardProps {
     iconSize: number;
 }
 
-const Card: React.FC<CardProps> = ({ id, icon: Icon, isFlipped, isMatched, iconSize }) => {
+const Card: React.FC<CardProps> = memo (({ id, icon: Icon, isFlipped, isMatched, iconSize }) => {
     const flipCard = useGameStore(state => state.flipCard);
 
 
-    // Обработчик клика по карточке
-    const handleClick = (): void => {
+    const handleClick = useCallback( (): void => {
         if (!isFlipped && !isMatched) {
             flipCard(id);
         }
-    };
+    },[id, isFlipped, isMatched, flipCard]);
+    console.log('Card render');
 
     return (
         <div
-            className={`${styles.card} ${isFlipped ? styles.flipped : ''} ${isMatched ? styles.matched : ''}`}
+            className={`${styles.card} ${isFlipped ? styles.flipped : ''}`}
             onClick={() => handleClick()}
             data-card-id={id}
         >
             <div className={styles.cardInner}>
-                {isFlipped || isMatched ? (
-                    <div className={styles.cardFront}>
-                        {Icon && <Icon size={iconSize} />}
-                    </div>
-                ) : (
-                    <div className={styles.cardBack}>
-                        <FaQuestion size={iconSize} />
-                    </div>
-                )}
+                <div className={`${styles.cardFront} ${isMatched ? styles.matched : ''}`}>
+                    {Icon && <Icon size={iconSize} />}
+                </div>
+                <div className={styles.cardBack}>
+                    <FaQuestion size={iconSize} />
+                </div>
             </div>
         </div>
     );
-};
+});
 
 export default Card;

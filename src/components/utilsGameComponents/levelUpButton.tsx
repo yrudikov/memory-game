@@ -19,6 +19,7 @@ const LevelUpButton: React.FC = () => {
         }
         return resetAndRestart();
     }
+    console.log('LevelUpButton render');
 
     return <>
     <button className={styles.resetButton} onClick={() => handleIncreaseDifficulty()}>

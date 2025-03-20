@@ -1,34 +1,55 @@
-
 .card {
   width: 100%;
   aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px $primary-color solid;
-  background-color: $secondary-background-color;
+  perspective: 1000px;
+  cursor: pointer;
+
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
   border-radius: $primary-border-radius;
 }
 
-.cardFront {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.flipped {
+    background-color: $background-color;
+}
+.flipped .cardInner {
+  transform: rotateY(180deg);
 }
 
 .cardBack {
-  color: $secondary-color;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $secondary-background-color;
+  border-radius: inherit;
+  color: $secondary-color;
 }
 
-.flipped {
- background-color: $background-color;
+.cardFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+  border-radius: inherit;
+  border: 1px $primary-color solid;
 }
 
 .matched {
- border: $accent-color 3px solid;
+  border: 3px solid $matched-color;
 }

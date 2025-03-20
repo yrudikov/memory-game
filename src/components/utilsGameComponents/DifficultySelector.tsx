@@ -17,6 +17,7 @@ const DifficultySelector: React.FC = () => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setDifficulty(e.target.value as Difficulty);
     };
+    console.log('DifficultySelector render');
 
     return (
         <div className={styles.difficultySelector}>

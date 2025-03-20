@@ -5,6 +5,7 @@ import content from '@/assets/content.json';
 
 
 const ResetButton: React.FC = () => {
+    console.log('ResetButton render');
     const resetAndRestart = useGameStore(state => state.resetAndRestart)
 
     return <>
