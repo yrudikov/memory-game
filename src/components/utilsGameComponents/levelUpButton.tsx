@@ -14,7 +14,6 @@ const LevelUpButton: React.FC = () => {
         const foundIndex = options.findIndex(option =>
             option.value === difficulty);
         if (foundIndex !== -1 && foundIndex + 1 < options.length) {
-            console.log('test')
         return setDifficulty(options[foundIndex + 1].value as Difficulty);
         }
         return resetAndRestart();

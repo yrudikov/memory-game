@@ -37,10 +37,16 @@
   background-size: 200% 200%;
   transition: background-position 1s ease-in-out;
   background-position: left center;
+  svg {
+    transition: transform 0.5s ease-in-out;
+  }
 }
 
 .cardBack:hover {
   background-position: right center;
+  svg {
+    transform: rotate(360deg);
+  }
 }
 
 .cardFront {
