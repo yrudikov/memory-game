@@ -4,6 +4,7 @@
   --secondary-color: #e6e6fa;
   --background-color: #e6e6fa;
   --secondary-background-color: #2a0a52;
+  --matched-color: #ff9800;
 }
 
 
@@ -12,7 +13,7 @@
 //--background-color: #f1e5cf;
 //--secondary-background-color: #013366;
 
-$font-family: 'Arial, sans-serif';
+$font-family: 'Roboto, sans-serif';
 $base-font-size: 16px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
@@ -20,6 +21,7 @@ $primary-color: var(--primary-color);
 $secondary-color: var(--secondary-color);
 $background-color: var(--background-color);
 $secondary-background-color: var(--secondary-background-color);
+$matched-color: var(--matched-color);
 
 
 

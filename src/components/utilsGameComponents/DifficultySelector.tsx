@@ -1,6 +1,6 @@
-// src/components/DifficultySelector.tsx
+// src/components/utilsGameComponents.tsx
 import React from 'react';
-import styles from './DifficultySelector.module.scss';
+import styles from './utilsGameComponents.module.scss';
 import { useGameStore, Difficulty } from '@/store/gameStore';
 import content from '@/assets/content.json';
 

@@ -18,10 +18,17 @@
   align-items: center;
 }
 
+.cardBack {
+  color: $secondary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flipped {
  background-color: $background-color;
 }
 
 .matched {
- border: $primary-color 3px solid;
+ border: #ff9800 3px solid;
 }

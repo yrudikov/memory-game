@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './Card.module.scss';
 import { useGameStore } from '@/store/gameStore';
+import { FaQuestion } from "react-icons/fa6";
 // import content from '@/assets/content.json';
 
 interface CardProps {
@@ -36,7 +37,7 @@ const Card: React.FC<CardProps> = ({ id, icon: Icon, isFlipped, isMatched, iconS
                     </div>
                 ) : (
                     <div className={styles.cardBack}>
-                        <p>?</p>
+                        <FaQuestion size={iconSize} />
                     </div>
                 )}
             </div>

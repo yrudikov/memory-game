@@ -1,7 +1,7 @@
 
 import { create } from 'zustand';
 import { IconType } from 'react-icons';
-
+import { generateCards } from '@/utils/generateCards';
 
 export interface Card {
     id: number;
@@ -43,6 +43,7 @@ export interface GameState {
     setRevealedCards: (cards: number[]) => void;
     setName: (name: string | null) => void;
     saveResult: () => void;
+    resetAndRestart: () => void;
 }
 
 
@@ -147,6 +148,12 @@ export const useGameStore = create<GameState>((set, get) => ({
         localStorage.setItem('gameHistory', JSON.stringify(history));
 
         set({ isGameOver: true });
+    },
+    resetAndRestart: () => {
+        get().resetGame();
+        const { difficulty } = get();
+        const newCards = generateCards(difficulty);
+        set({ cards: newCards });
     },
 }));
 

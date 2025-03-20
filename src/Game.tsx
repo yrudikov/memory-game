@@ -4,29 +4,19 @@ import { useGameStore } from '@/store/gameStore';
 import Header from '@/components/Header/Header';
 import Board from '@/components/Board/Board';
 import styles from '@/styles/Game.module.scss';
-import { getOptimalColumns, generateCards } from "@/utils/generateCards.ts";
+import { getOptimalColumns } from "@/utils/generateCards.ts";
 import {useIsMobile} from "@/hooks/useIsMobile.ts";
 
 
 const Game: React.FC = () => {
-    const setCards = useGameStore(state => state.setCards);
     const difficulty = useGameStore(state => state.difficulty);
     const cards = useGameStore(state => state.cards);
-    const resetGameStore = useGameStore(state => state.resetGame);
+    const resetAndRestart = useGameStore(state => state.resetAndRestart)
 
-    const initializeGame = (): void => {
-        const newCards = generateCards(difficulty);
-        setCards(newCards);
-    };
 
     useEffect(() => {
-        initializeGame();
+        resetAndRestart();
     }, [difficulty]);
-
-    const resetAndInitialize = (): void => {
-        resetGameStore();
-        initializeGame();
-    };
 
 
     const isMobile = useIsMobile();
@@ -34,7 +24,7 @@ const Game: React.FC = () => {
 
     return (
         <div className={styles.gameContainer}>
-            <Header onReset={resetAndInitialize} />
+            <Header  />
             <Board optimalColumns={optimalColumns} isMobile={isMobile} />
         </div>
     );

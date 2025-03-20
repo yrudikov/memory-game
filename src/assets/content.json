@@ -2,19 +2,22 @@
   "test": "is work!",
   "header": {
     "attempts": "Attempts:",
-    "points": "Points:",
-    "time": "Time:",
-    "seconds": "sec"
+    "points": "Points:"
   },
   "difficultySelector": {
-    "label": "Select difficulty level:",
+    "label": "Select level:",
     "options": {
       "easy": "Easy",
       "medium": "Medium",
       "hard": "Hard",
-      "banana": "BananA"
+      "banana": "Banana"
     }
   },
+  "timer": {
+    "time": "Time:",
+    "seconds": "sec"
+  },
+  "resetButton": "New Game",
   "game": {
 
   },

@@ -65,7 +65,7 @@ export const getIconSize = (difficulty: Difficulty, isMobile: boolean): number =
         case 'hard':
             return isMobile ? 40 : 90;
         case 'banana':
-            return isMobile ? 30 : 80;
+            return isMobile ? 30 : 70;
         default:
             return isMobile ? 40 : 60;
     }
