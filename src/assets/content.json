@@ -1,25 +1,31 @@
 {
+  "test": "is work!",
   "header": {
     "attempts": "Attempts:",
+    "points": "Points:"
+  },
+  "difficultySelector": {
+    "label": "Select level:",
+    "options": [
+      { "id": 0, "value": "easy", "name": "Easy" },
+      { "id": 1, "value": "medium", "name": "Medium" },
+      { "id": 2, "value": "hard", "name": "Hard" },
+      { "id": 3, "value": "banana", "name": "Banana" }
+    ]
+  },
+  "timer": {
     "time": "Time:",
     "seconds": "sec"
   },
-  "difficultySelector": {
-    "label": "Select difficulty level:",
-    "options": {
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard"
+  "resetButton": "New Game",
+  "levelUpButton": "Level Up",
+  "game": {
+    "gameOverModal": {
+      "congrats": "Congratulations!",
+      "gameOver": "You result:"
     }
   },
-  "game": {
-
-  },
-  "images": [],
   "card": {
     "imageAlt": "card"
-  },
-  "footer": {
-
   }
 }

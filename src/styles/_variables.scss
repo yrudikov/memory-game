@@ -1,0 +1,37 @@
+
+:root {
+  --primary-color: #2a0a52;
+  --secondary-color: #e6e6fa;
+  --background-color: #e6e6fa;
+  --secondary-background-color: #2a0a52;
+  --accent-color: #af4261;
+  --accent-color-hover: #a03b5b;
+  --modal-background: #fff;
+  --matched-color: green;
+
+}
+
+
+$font-family: 'Roboto, sans-serif';
+$base-font-size: 1rem;
+$title-font-size: 2rem;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$primary-border-radius: 6px;
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$background-color: var(--background-color);
+$secondary-background-color: var(--secondary-background-color);
+$accent-color: var(--accent-color);
+$accent-color-hover: var(--accent-color-hover);
+$matched-color: var(--matched-color);
+$dark-gray: #323232;
+$purple-accent: #9E81FE;
+$soft-purple: #D6CAFE;
+$light-purple: #9E81FE;
+$background-gradient-buttons: linear-gradient($soft-purple, $light-purple);
+$box-shadow-buttons: 0 1px 6px 0 $purple-accent;
+$box-shadow-modal: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+
+
