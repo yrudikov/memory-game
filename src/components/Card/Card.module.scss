@@ -35,18 +35,22 @@
   color: $secondary-color;
   background: linear-gradient(45deg, $primary-color 20%, $purple-accent 100%);
   background-size: 200% 200%;
-  transition: background-position 1s ease-in-out;
+  transition: background-position 1s ease-in-out, transform 1s;
   background-position: left center;
   svg {
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s ease-in-out;
   }
+
 }
 
 .cardBack:hover {
   background-position: right center;
+  transform: scale(1.05);
   svg {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
   }
+  z-index: 1000;
+
 }
 
 .cardFront {
@@ -66,3 +70,4 @@
 .matched {
   border: 3px solid $matched-color;
 }
+
