@@ -10,6 +10,7 @@
   cursor: pointer;
   transition: 0.2s;
   transition-timing-function: linear;
+  height: 41px;
 }
 .resetButton:hover {
     box-shadow: $box-shadow-buttons;
@@ -44,6 +45,8 @@
 
     &:hover {
       box-shadow: $box-shadow-buttons;
+      color: $accent-color;
+      border-color: $accent-color;
     }
 
     &:active {
